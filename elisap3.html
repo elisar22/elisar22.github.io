@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Glass+Antiqua&family=Londrina+Shadow&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Agbalumo&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0 auto;
+  max-width: 600px;
+  background: #9999ff;
+}
+div {
+  height: 250px;
+  background-size: cover;
+  position: relative;
+  margin: 40px 0 0 0;
+  border-radius: 12px;
+}
+h1 {
+  font-family: 'Glass Antiqua', cursive;
+  text-align: center;
+  font-size: 75px;
+  color: #FFFC9A;
+  margin: 60px 0 0 0;
+}
+h2 {
+  text-align: center;
+  color: #ff99bb;
+  margin: 0px 0 70px 0;
+  font-family: 'Cormorant Garamond', serif;
+}
+p {
+  color: rgba(255,255,255,1);
+  background: black;
+  font-family: 'Agbalumo', cursive;
+  color: #cc3399;
+  background: linear-gradient(bottom, rgba(228,204,22,1), rgba(255,245,173,.4));
+  background: -webkit-linear-gradient(bottom, rgba(228,204,22,1), rgba(255,245,173,.4));
+  background: -moz-linear-gradient(bottom, rgba(228,204,22,1), rgba(255,245,173,.4));
+  padding: 10px;
+  line-height: 28px;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  height: 30px;
+  transition: height .5s;
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+}
+
+small {
+  opacity: 0;
+}
+
+.show-description p {
+  height: 150px;
+}
+
+.show-description small {
+  opacity: 1;
+}
+
+.first{
+  background-image: url("http://www.budgetsavvydiva.com/wp-content/uploads/2014/04/strawberry2.jpg");
+}
+.second{
+  background-image: url("https://hips.hearstapps.com/hmg-prod/images/190523-vanilla-milkshake-022-horizontal-1559169406.png?crop=0.6666666666666667xw:1xh;center,top&resize=1200:*");
+}
+.dessert{
+  background-image: url("https://4.bp.blogspot.com/-dx4El7xdSzk/VX1JogFViOI/AAAAAAAAEmA/E8AjJb1TJWA/s1600/chocolate%2Bpudding%2Blow%2Bclose%2Bwith%2Btext.jpg");
+}
+.price {
+  float: right;
+}
+@media (max-width: 500px) {
+  h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    line-height: 40px;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 20px 0 30px 0;
+  }
+  div {
+    margin: 20px 12px 0 12px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  small {
+    font-size: 16px;
+  }
+}
+  input {
+  font-size: 22px;
+  } 
+
+  
+
+</style>
+
+</head>
+
+<body>
+<h1>Elisa's Recipes</h1>
+<h2>for good eats</h2>
+<div class="first">
+
+  <input class="quantities"type="number" min="0" style="width: 50px"><p>Simple Strawberry Shortcake<span class="price">$23</span><br />
+  <small>Ingredients: 1 quart sliced strawberries, ¼ cup white sugar, 12 ounce package prepared sponge cake dessert cups, and 7 ounce can whipped cream.<br />Step 1: Place strawberries in a bowl; add sugar and stir. Cover and refrigerate until sugar has dissolved.<br />Step 2: Place 1 dessert cup in each serving bowl and smother with strawberries. Top each with whipped cream.</small></p>
+</div>
+
+<div class="second"> 
+  <input class="quantities"type="number" min="0" style="width: 50px"><p>Classic Vannila Milkshake<span class="price">$11</span><br />
+  <small>Ingredients: 4 large scoops of vanilla ice cream, ¼ cup milk, whipped topping, sprinkles, and a cherry.<br />Step 1: In a blender, blend together ice cream and milk.<br />Step 2: Pour into a glass and garnish with whipped topping, sprinkles, and a cherry.</small></p>
+</div>
+<div class="dessert">
+  <input class="quantities"type="number" min="0" style="width: 50px"><p>Chocolate Pudding <span class="price">$8</span><br />
+  <small>Ingredients: 1 cup sugar, 1/2 cup baking cocoa, 1/4 cup cornstarch, 1/2 teaspoon salt, 4 cups milk<br />Step 1: In a saucepan, add sugar, cocoa, cornstarch and salt. Slowly add milk. Boil over medium heat; boil and stir for 2 minutes. Take off the heat; stir in butter and vanilla. Chill until serving.</small></p>
+</div>
+<br><br>
+<input id="Name" placeholder="Your Name">
+<input id="Email" placeholder="Your Email">
+<input id="submit" type="submit">
+<br><br>
+<script>
+$('div').on('click', function() {
+  $(this).toggleClass('show-description');
+  });
+</script>
+
+</body>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+  
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDbmgARbCgSNe6AmLGd6sBws1_P5WK2ITs",
+    authDomain: "elisap3-793db.firebaseapp.com",
+    projectId: "elisap3-793db",
+    storageBucket: "elisap3-793db.appspot.com",
+    messagingSenderId: "225847763393",
+    appId: "1:225847763393:web:ef6d1dac5c9bf4d3cf8f40"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const Name = document.querySelector("#Name") 
+  const Email = document.querySelector("#Email")
+  document.querySelector('#submit').addEventListener('click', Submit)
+  const prices = document.querySelectorAll(".price") 
+  const quantities = document.querySelectorAll(".quantities") 
+  const itemsList = ["Simple Strawberry Shortcake", "Classic Vannila Milkshake", "Chocolate Pudding"]
+  
+  function Submit() {
+    const timestamp = buildTimestamp()
+	  
+	  let total = 0
+
+	  let cart = { }
+	  for  (let i=0; i<quantities.length; i=i+1) {
+	  	if (quantities[i].value != "0" && quantities[i].value != "") {	
+			let price = prices[i].innerHTML.replace('$', '')
+			total = total + quantities[i].value * price 
+	  		cart[itemsList[i]] = parseInt(quantities[i].value) 
+	  	}
+	  	quantities[i].value = ""
+	  }
+
+  
+    set(ref(db, timestamp), {
+  	  Name: Name.value,
+      email: Email.value,
+	  cart: cart,
+	  totalPrice: total,
+	  paid: "not yet",
+	   
+		
+    });
+
+    Name.value = ""
+    Email.value = ""
+  }
+  function buildTimestamp() {
+    const now = new Date();
+    let timestamp = now.getFullYear().toString() + "/";
+    //const month = now.toLocaleString('default', { month: 'long' });
+
+    let month = now.getMonth()+1   //add 1 because Javascript uses 0 for January
+    month = month.toString()
+    month = addLeadingZero(month)
+    timestamp += month + "/"; 
+
+    let date = now.getDate().toString()
+    date = addLeadingZero(date)
+    timestamp += date + "/";
+
+    let hours = now.getHours().toString()
+    hours = addLeadingZero(hours)
+    timestamp += hours + ":";
+
+    let minutes = now.getMinutes().toString()
+    minutes = addLeadingZero(minutes)
+    timestamp += minutes + ":";
+
+    let seconds = now.getSeconds().toString()
+    seconds = addLeadingZero(seconds)
+    timestamp += seconds;
+
+    return timestamp
+  }
+
+  function addLeadingZero(units) {
+  	if (units.length < 2) {
+  		units = "0" + units
+  	}
+  	return units
+  }
+
+</script>
